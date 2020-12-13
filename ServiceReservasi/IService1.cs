@@ -18,24 +18,51 @@ namespace ServiceReservasi
         [OperationContract]
         string deletePemesanan(string IDPemesanan);
         [OperationContract]
-        List<CekLokasi> ReviewLokasi();
-        [OperationContract]
         List<DetailLokasi> DetailLokasi();
         [OperationContract]
         List<Pemesanan> Pemesanan();
+        string GetData(int value);
+
+        //Login & Register
+        [OperationContract]
+        string Login(string username, string password);
+        [OperationContract]
+        string Register(string username, string password, string kategori);
+        [OperationContract]
+        string UpdateRegister(string username, string password, string kategori, int id);
+        [OperationContract]
+        string DeleteRegister(string username);
+        [OperationContract]
+        List<DataRegister> DataRegist();
 
     }
 
     [DataContract]
-    public class CekLokasi
+    public class DataRegister
+    {
+        [DataMember(Order = 1)]
+        public int id { get; set; }
+        [DataMember(Order = 2)]
+        public string username { get; set; }
+        [DataMember(Order = 3)]
+        public string password { get; set; }
+        [DataMember(Order = 4)]
+        public string kategori { get; set; }
+    }
+    [DataContract]
+    public class CekLokasi //daftar lokasi nongrong
     {
         [DataMember]
-        public string IDLokasi { get; set; }
+        public string IDLokasi { get; set; } //variable dari public class
+
         [DataMember]
         public string NamaLokasi { get; set; }
+
         [DataMember]
         public string DeskripsiSingkat { get; set; }
     }
+
+
 
     [DataContract]
     public class DetailLokasi
